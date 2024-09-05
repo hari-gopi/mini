@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .register{
+        max-width: 400px;
+        margin:  auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f906;
+    }
+    form {
+    display: flex;
+    flex-direction: column;
+    }
+    .error {
+        color: red;
+        font-size:20px;
+        
+    }
+    </style>
+</head>
+<body>
+       <div class="register">
+
+                    <!-- Replace with your Access Key -->
+                   
+                 <form id="myform" onsubmit="return validateForm()" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="997cacb3-7c5c-48a2-9933-dc00598eae84">
+                             <label for="name">Name</label>
+                             <input type="text" id="name" name="name" >
+                             <span id="nameError" class="error"></span>
+                             <br>
+                             
+                             <br>
+    
+                            <label for="email" >Email</label>
+                            <input type="email" id="email" name="email">
+                            <h4 id="emailError" class="error"></h4>
+                    
+                            <br>
+                    
+                            
+                             <label for="message">message</label>
+                             <input type="text" id="message" name="message" required>
+                             <span id="messageError" class="error"></span>
+                             
+                
+                            <br>
+    
+            
+                            <input type="submit" value="submit">
+                            <br>
+                           
+                            
+                            
+           
+                     </form>
+       </div> 
+
+       
+
+    <script>
+        function validateForm(){
+            var name=document.getElementById('name').value;
+            var email=document.getElementById('email').value;
+            var meassage=document.getElementById('message').value;
+            
+            document.getElementById('nameError').innerHTML='';
+            document.getElementById('emailError').innerHTML='';
+            document.getElementById('messageError').innerHTML='';
+            
+            
+            if (name==="") {
+                document.getElementById('nameError').innerHTML='name is required';
+                return false;
+            }
+            
+       
+
+            if (email==="") {
+                document.getElementById('emailError').innerHTML='email is required';
+                return false;
+            }else if(!isvalidEmail(email)){
+                document.getElementById('emailError').innerHTML='invalid email format';
+                return false;
+
+            }
+            if (message==="") {
+                document.getElementById('messageError').innerHTML='meassage is required';
+                return false;
+            }
+            
+            return true;
+
+        }
+
+        
+        function isvalidEmail(email){
+             var emailRegex =/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+         }
+    </script>
+</body>
+</html>
